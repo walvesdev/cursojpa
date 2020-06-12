@@ -9,24 +9,23 @@ import com.algaworks.curso.jpa2.models.Fabricante;
 import java.io.Serializable;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.transaction.Transactional;
 
 /**
  *
  * @author Willian
  */
-public class FabricanteDAO implements Serializable{
-    
-    /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	@Inject
+public class FabricanteDAO implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
+    @Inject
     private EntityManager em;
-    
-    public void salvar(Fabricante fabricante){
-        
+
+    public void salvar(Fabricante fabricante) {
+
         em.getTransaction().begin();
-        em.persist(fabricante);
+        em.persist(fabricante);        
         em.getTransaction().commit();
         em.close();
     }

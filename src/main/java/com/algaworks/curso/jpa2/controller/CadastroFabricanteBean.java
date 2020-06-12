@@ -18,11 +18,9 @@ import javax.inject.Named;
 @ViewScoped
 public class CadastroFabricanteBean implements Serializable {
 
-    /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	@Inject
+    private static final long serialVersionUID = 1L;
+
+    @Inject
     private CadastrofabricanteService service;
     private Fabricante fabricante;
 
@@ -31,17 +29,17 @@ public class CadastroFabricanteBean implements Serializable {
         this.limpar();
     }
 
-    public void salvar(){
+    public void salvar() {
         try {
             this.service.salvar(fabricante);
             FacesUtil.addSuccessMessage("Fabricante salvo com sucesso!!");
             this.limpar();
-        } catch (NegocioException e) {            
+        } catch (NegocioException e) {
             FacesUtil.addErrorMessage(e.getMessage());
             this.limpar();
         }
     }
-    
+
     public Fabricante getFabricante() {
         return fabricante;
     }
