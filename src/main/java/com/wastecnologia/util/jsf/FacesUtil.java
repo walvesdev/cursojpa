@@ -1,4 +1,4 @@
-package com.algaworks.curso.jpa2.util.jsf;
+package com.wastecnologia.util.jsf;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;

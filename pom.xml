@@ -2,18 +2,20 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.algaworks</groupId>
-    <artifactId>locadora-veiculo-web</artifactId>
+    <groupId>com.wastecnologia</groupId>
+    <artifactId>WASTecnologia</artifactId>
     <version>1.0.0-SNAPSHOT</version>
-
+    <url>http://maven.apache.org</url>
+    
     <packaging>war</packaging>
 
     <properties>
+        <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 	
     <build>
-        <finalName>locadora-veiculo-web</finalName>
+        <finalName>WASTecnologia</finalName>
         <plugins>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -21,33 +23,57 @@
                 <configuration>
                     <source>14</source>
                     <target>14</target>
+                    <compilerArguments>
+                        <endorseddirs>${endorsed.dir}</endorseddirs>
+                    </compilerArguments>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.3</version>
+                <configuration>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
                 </configuration>
             </plugin>
         </plugins>
     </build>
-
+    
     <dependencies>
         <!-- Mojarra (Implementação JSF 2) -->
-        <dependency>
+<!--        <dependency>
             <groupId>org.glassfish</groupId>
             <artifactId>javax.faces</artifactId>
-            <version>2.3.8</version>
+            <version>2.4.0</version>
             <scope>compile</scope>
-        </dependency>
+        </dependency>-->
 
         <!-- PrimeFaces (Biblioteca de componentes) -->
         <dependency>
             <groupId>org.primefaces</groupId>
             <artifactId>primefaces</artifactId>
             <version>8.0</version>
-        </dependency>
+        </dependency>        
         
-        <!-- https://mvnrepository.com/artifact/javax/javaee-api -->
         <dependency>
             <groupId>javax</groupId>
-            <artifactId>javaee-api</artifactId>
+            <artifactId>javaee-web-api</artifactId>
             <version>8.0.1</version>
-            <scope>provided</scope>
+            <scope>compile</scope>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.glassfish.soteria</groupId>
+            <artifactId>javax.security.enterprise</artifactId>
+            <version>1.0</version>
+            <scope>compile</scope>
+        </dependency>
+        
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13</version>
+            <scope>test</scope>
         </dependency>
         
         <!-- OmniFaces (utilitários para JSF) -->
