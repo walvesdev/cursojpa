@@ -5,16 +5,27 @@
  */
 package com.wastecnologia.curso.jsf.models;
 
+import java.util.Objects;
+
 /**
  *
  * @author willian
  */
 public class Produto {
         
+        private Integer id;
         private String nome;
         private String fabricante;
         private String preco;
 
+        public Integer getId() {
+                return id;
+        }
+
+        public void setId(Integer id) {
+                this.id = id;
+        }
+        
         public String getNome() {
                 return nome;
         }
@@ -37,6 +48,39 @@ public class Produto {
 
         public void setPreco(String preco) {
                 this.preco = preco;
+        }
+
+        @Override
+        public int hashCode() {
+                int hash = 3;
+                hash = 37 * hash + Objects.hashCode(this.nome);
+                hash = 37 * hash + Objects.hashCode(this.fabricante);
+                hash = 37 * hash + Objects.hashCode(this.preco);
+                return hash;
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+                if (this == obj) {
+                        return true;
+                }
+                if (obj == null) {
+                        return false;
+                }
+                if (getClass() != obj.getClass()) {
+                        return false;
+                }
+                final Produto other = (Produto) obj;
+                if (!Objects.equals(this.nome, other.nome)) {
+                        return false;
+                }
+                if (!Objects.equals(this.fabricante, other.fabricante)) {
+                        return false;
+                }
+                if (!Objects.equals(this.preco, other.preco)) {
+                        return false;
+                }
+                return true;
         }
         
         
