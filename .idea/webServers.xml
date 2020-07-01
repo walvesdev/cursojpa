@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="55bffb36-15ed-4c53-9a6d-2e5203b63215" name="Wildfly20" url="http://localhost">
+        <fileTransfer mountedRoot="C:\Users\Willian\Documents\Pessoal\Curso\wildfly-20.0.0.Final" accessType="MOUNT" port="0" />
+      </webServer>
+    </option>
+    <groups>
+      <group>
+        <name>Wildfly</name>
+        <servers>
+          <name value="Wildfly20" />
+        </servers>
+      </group>
+    </groups>
+  </component>
+</project>

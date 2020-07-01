@@ -1,43 +1,69 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-        <h:head>
-                <title>Gestão de Produtos</title>
-        </h:head>
-        <h:body>
-                <h:form>
-                        <h:commandLink value="Ajuda sobre essa Página" action="#{gestaoProduto.obterAjuda()}" >
-                                <f:actionListener binding="#{logListener}" />
-                        </h:commandLink> <br /><br />
-                        ID:
-                        <h:inputText value="#{gestaoProduto.produto.id}" /> <br/>
-                        Nome:
-                        <h:inputText value="#{gestaoProduto.produto.nome}" /> <br/>
-                        Fabricante:
-                        <h:inputText value="#{gestaoProduto.produto.fabricante}" /><br/>
-                        Valor:
-                        <h:inputText value="#{gestaoProduto.produto.preco}" /><br/>
-                        <h:commandButton value="Salvar" action="#{gestaoProduto.addProdutoLista()}"  actionListener="#{gestaoProduto.verificarInclusao}">
-                                <f:actionListener binding="#{logListener}" />
-                        </h:commandButton> <br /><br />
-                </h:form>
+<ui:composition template="/WEB-INF/template/LayoutPadrao.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui">
 
-                <h:form>
-                        <ol>
-                                <ui:repeat var="item" value="#{gestaoProduto.produtos}">
-                                        <li> 
-                                                #{item.id} - #{item.nome} - #{item.fabricante} - #{item.preco}
-                                                <h:commandButton value="Excluir" action="#{gestaoProduto.excluir}" >
-                                                        <f:setPropertyActionListener target="#{gestaoProduto.produtoSelecionado}" value="#{item}" />
-                                                </h:commandButton>
-                                        </li>
-                                </ui:repeat>
-                        </ol>
-                </h:form>
 
-        </h:body>
-</html>
+    <ui:define name="corpo">
+        <h:form>
+            <style>
+                .teste{
+                    border: solid red 2px;
+                }
 
+            </style>
+
+            <h:outputText value="outputtext"  />
+            <h:outputFormat value="outputformat" />
+            <h:outputLabel value="outputlabel" />
+
+            <h:commandLink value="Ajuda sobre essa Página"
+                           action="#{gestaoProduto.obterAjuda()}">
+                <f:actionListener binding="#{logListener}" />
+            </h:commandLink>
+            <br />
+            <br />
+
+            Nome:
+            <h:inputText value="#{gestaoProduto.produto.nome}" class="teste"
+                         onfocus="(this.value != '') ? true : this.value = ''">
+                <f:passThroughAttribute name="placeholder" value="seu texto" />
+            </h:inputText>
+            <br />
+            Fabricantee:
+            <h:inputText value="#{gestaoProduto.produto.fabricante}" />
+            <br />
+            Valor:
+            <h:inputText value="#{gestaoProduto.produto.preco}" />
+            <br />
+            <h:commandButton value="Salvar" styleClass="btn btn-sm btn-primary"
+                             action="#{gestaoProduto.addProdutoLista}"
+                             actionListener="#{gestaoProduto.verificarInclusao}">
+                <f:actionListener binding="#{logListener}" />
+            </h:commandButton>
+            <br />
+            <br />
+        </h:form>
+
+        <h:form>
+            Pesquisa por fabricante:
+            <h:inputText value="#{gestaoProduto.fabricantePesquisa}"
+                         valueChangeListener="#{gestaoProduto.fabricantePesquisaAlterado}"
+                         onchange="submit()" />
+        </h:form>
+
+        <h:form>
+            <ol>
+                <ui:repeat var="item" value="#{gestaoProduto.produtos}">
+                    <li>#{item.nome} - #{item.fabricante} - #{item.preco}
+                        <h:commandButton value="Excluir" action="#{gestaoProduto.excluir}">
+                            <f:setPropertyActionListener target="#{gestaoProduto.produtoSelecionado}" value="#{item}" />
+                        </h:commandButton>
+                    </li>
+                </ui:repeat>
+            </ol>
+        </h:form>
+    </ui:define>
+</ui:composition>

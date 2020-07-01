@@ -6,7 +6,6 @@
 	
     <persistence-unit name="locadoraVeiculoPU" transaction-type="RESOURCE_LOCAL">
             
-        <!-- provedor/implementacao do JPA -->
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider> 
    
         <class>com.wastecnologia.curso.jpa2.models.Fabricante</class>
