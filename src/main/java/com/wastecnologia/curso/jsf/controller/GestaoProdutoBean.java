@@ -22,6 +22,11 @@ public class GestaoProdutoBean implements Serializable {
     private List<Produto> produtosFiltrados;
     private Produto produtoSelecionado;
     private String fabricantePesquisa;
+    private String vaga = "vaga 01";
+    private String time;
+    private String sexo;
+    private boolean salvar;
+    private List<String> times = new ArrayList<>();
 
     public GestaoProdutoBean() {
         this.produto = new Produto();
@@ -37,6 +42,10 @@ public class GestaoProdutoBean implements Serializable {
     @PreDestroy
     public void destroy() {
         System.out.println("Fim bean");
+    }
+
+    public void escolerTime() {
+        System.out.println("Time escolhido: " + this.time);
     }
 
     public void fabricantePesquisaAlterado(ValueChangeEvent event) {
@@ -110,6 +119,46 @@ public class GestaoProdutoBean implements Serializable {
 
     public List<Produto> getProdutosFiltrados() {
         return produtosFiltrados;
+    }
+
+    public String getVaga() {
+        return vaga;
+    }
+
+    public void setVaga(String vaga) {
+        this.vaga = vaga;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public List<String> getTimes() {
+        return times;
+    }
+
+    public void setTimes(List<String> times) {
+        this.times = times;
+    }
+
+    public String getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
+    }
+
+    public boolean isSalvar() {
+        return salvar;
+    }
+
+    public void setSalvar(boolean salvar) {
+        this.salvar = salvar;
     }
 
 }
