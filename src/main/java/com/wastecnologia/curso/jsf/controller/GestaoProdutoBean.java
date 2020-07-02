@@ -27,6 +27,7 @@ public class GestaoProdutoBean implements Serializable {
     private String sexo;
     private boolean salvar;
     private List<String> times = new ArrayList<>();
+    private List<String> linguagens = new ArrayList<>();
 
     public GestaoProdutoBean() {
         this.produto = new Produto();
@@ -159,6 +160,14 @@ public class GestaoProdutoBean implements Serializable {
 
     public void setSalvar(boolean salvar) {
         this.salvar = salvar;
+    }
+
+    public List<String> getLinguagens() {
+        return linguagens;
+    }
+
+    public void setLinguagens(List<String> linguagens) {
+        this.linguagens = linguagens;
     }
 
 }

@@ -8,58 +8,62 @@
 
     <ui:define name="corpo">
         <h:form>
+
             <style>
                 .teste{
                     border: solid red 2px;
                 }
 
             </style>
+            <div>
+                <h:graphicImage value="/img/v.jpg" height="150" width="300"/> <br />
+                <h:outputText value="outputtext"  /> <br />
+                <h:outputFormat value="Vaga {0}" > <br />
+                    <f:param value="#{gestaoProduto.vaga}"/>
+                </h:outputFormat> <br />
+                <h:outputLabel value="outputlabel" /> <br />
 
-            <h:graphicImage value="/img/v.jpg" height="150" width="300"/> <br />
-            <h:outputText value="outputtext"  /> <br />
-            <h:outputFormat value="Vaga {0}" > <br />
-                <f:param value="#{gestaoProduto.vaga}"/>
-            </h:outputFormat> <br />
-            <h:outputLabel value="outputlabel" /> <br />
+                <h:commandLink value="Ajuda sobre essa Página"
+                               action="#{gestaoProduto.obterAjuda}">
+                    <f:actionListener binding="#{logListener}" />
+                </h:commandLink>
+                <br />
+                <br />
+            </div>
+            <h:panelGrid columns="2">
+                <h:outputLabel value="Nome: " for="nome" />
 
-            <h:commandLink value="Ajuda sobre essa Página"
-                           action="#{gestaoProduto.obterAjuda}">
-                <f:actionListener binding="#{logListener}" />
-            </h:commandLink>
-            <br />
-            <br />
+                <h:inputText value="#{gestaoProduto.produto.nome}"  id="nome"
+                             onfocus="(this.value != '') ? true : this.value = ''">
+                    <f:passThroughAttribute name="placeholder" value="seu texto" />
+                </h:inputText>
 
-            <h:outputLabel value="Nome: " for="nome" />
-            <h:inputText value="#{gestaoProduto.produto.nome}"  id="nome"
-                         onfocus="(this.value != '') ? true : this.value = ''">
-                <f:passThroughAttribute name="placeholder" value="seu texto" />
-            </h:inputText>
-            <br />
-            <h:outputLabel value="Fabricante " for="fabricante" />
-            <h:inputText value="#{gestaoProduto.produto.fabricante}" id="fabricante"/>
-            <br />
-            <h:outputLabel value="Preço:  " for="preco" />
-            <h:inputText  id="preco" />
-            <br />
-            <h:commandButton value="Salvar" styleClass="btn btn-sm btn-primary"
-                             action="#{gestaoProduto.addProdutoLista}"
-                             actionListener="#{gestaoProduto.verificarInclusao}">
-                <f:actionListener binding="#{logListener}" />
-            </h:commandButton>
-            <br />
-            <br />
-            <br />
-            <h:outputLabel value="Senha: " for="senha" />
-            <h:inputSecret id="senha"/>
-            <br />
-            <h:outputLabel value="Comentario: " for="comentario" />
-            <h:inputTextarea id="comentario"/>
+                <h:outputLabel value="Fabricante " for="fabricante" />
+                <h:inputText value="#{gestaoProduto.produto.fabricante}" id="fabricante"/>
 
+                <h:outputLabel value="Preço:  " for="preco" />
+                <h:inputText  id="preco" />
+                <h:outputLabel />
+
+                <h:commandButton value="Salvar" styleClass="btn btn-sm btn-primary"
+                                 action="#{gestaoProduto.addProdutoLista}"
+                                 actionListener="#{gestaoProduto.verificarInclusao}">
+                    <f:actionListener binding="#{logListener}" />
+                </h:commandButton>
+
+
+                <h:outputLabel value="Senha: " for="senha" />
+                <h:inputSecret id="senha"/>
+
+                <h:outputLabel value="Comentario: " for="comentario" />
+                <h:inputTextarea id="comentario"/>
+
+            </h:panelGrid>
         </h:form>
 
         <h:form>
-            Pesquisa por fabricante:
-            <h:inputText value="#{gestaoProduto.fabricantePesquisa}"
+            <h:outputLabel value="Pesquisa por fabricante:  " for="pf" />
+            <h:inputText value="#{gestaoProduto.fabricantePesquisa}" id="pf"
                          valueChangeListener="#{gestaoProduto.fabricantePesquisaAlterado}"
                          onchange="submit()" />
         </h:form>
@@ -145,12 +149,40 @@
 
             <h:outputLabel value="Gostaria de salvar as informaçõe?" for="salvar"/>
             <h:selectBooleanCheckbox  value="#{gestaoProduto.salvar}" id="salvar"/>
+
+            <h:selectManyCheckbox value="#{gestaoProduto.linguagens}">
+                <f:selectItem itemValue="JAVA" itemLabel="JAVA" />
+                <f:selectItem itemValue="PHP" itemLabel="PHP" />
+                <f:selectItem itemValue="C#" itemLabel="C#" />
+                <f:selectItem itemValue="JAVASCRIPT" itemLabel="JAVASCRIPT" />
+            </h:selectManyCheckbox>
         </h:form>
 
         <h:outputText value="#{gestaoProduto.sexo}" rendered="#{not empty gestaoProduto.sexo}"
                       style="background-color: lightskyblue; color: black;"/><br/><br/>
         <h:outputText value="#{gestaoProduto.salvar}" rendered="#{not empty gestaoProduto.sexo}"
                       style="background-color: lightskyblue; color: black;"/><br/><br/>
+
+        <ui:repeat var="item" value="#{gestaoProduto.linguagens}">
+            #{item}
+        </ui:repeat>
+
+        <h:form>
+            <h:commandButton value="Botão" action="Teste?faces-redirect=true" />
+            <br/>
+
+            <h:commandLink value="CommandLink" action="Gestaoprodutos" />
+            <br/>
+
+            <h:outputLink value="http://www.google.com">
+                Google
+                <f:param name="q" value="wastecnologia" />
+            </h:outputLink>
+            <br/>
+
+            <h:link value="Enviar" outcome="Teste"/>
+
+        </h:form>
 
     </ui:define>
 </ui:composition>
