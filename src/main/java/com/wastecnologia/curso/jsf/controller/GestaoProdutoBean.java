@@ -1,11 +1,15 @@
 package com.wastecnologia.curso.jsf.controller;
 
+import com.ibm.icu.util.Calendar;
 import com.wastecnologia.curso.jsf.models.Produto;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
+import javax.faces.application.FacesMessage;
+import javax.faces.application.FacesMessage.Severity;
+import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.faces.event.ValueChangeEvent;
 import javax.faces.view.ViewScoped;
@@ -25,6 +29,7 @@ public class GestaoProdutoBean implements Serializable {
     private String vaga = "vaga 01";
     private String time;
     private String sexo;
+    private String nomeFrm;
     private boolean salvar;
     private List<String> times = new ArrayList<>();
     private List<String> linguagens = new ArrayList<>();
@@ -45,6 +50,30 @@ public class GestaoProdutoBean implements Serializable {
         System.out.println("Fim bean");
     }
 
+    public void cadastrarNomeFrm() {
+        if (this.getNomeFrm() == null || this.getNomeFrm().length() < 10) {
+            this.addMsg("frm:nomeFrm", FacesMessage.SEVERITY_ERROR, "Nome Incompleto",
+                    "Favor informar seu nome completo!");
+        }
+        if (hjDiaDescanso()) {
+            this.addMsg(null, FacesMessage.SEVERITY_WARN, "Hoje é dia de descanso",
+                    "Voce não pode cadastar usuarios hoje!");
+        }
+        this.addMsg(null, FacesMessage.SEVERITY_INFO, "Cadastrado OK",
+                "Salvo com sucesso!");
+    }
+
+    public void addMsg(String clientId, Severity severity, String summary, String detail) {
+        FacesContext ctx = FacesContext.getCurrentInstance();
+        FacesMessage message = new FacesMessage(severity, summary, detail);
+
+        ctx.addMessage(clientId, message);
+    }
+
+    public boolean hjDiaDescanso() {
+        return Calendar.getInstance().get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY;
+    }
+
     public void escolerTime() {
         System.out.println("Time escolhido: " + this.time);
     }
@@ -55,8 +84,8 @@ public class GestaoProdutoBean implements Serializable {
         this.produtosFiltrados.clear();
 
         for (var p : this.produtos) {
-            if (p.getFabricante() != null && p.getFabricante().toLowerCase()
-                    .startsWith(event.getNewValue().toString().toLowerCase())) {
+            if (p.getFabricante() != null
+                    && p.getFabricante().toLowerCase().startsWith(event.getNewValue().toString().toLowerCase())) {
                 this.produtosFiltrados.add(p);
             }
         }
@@ -168,6 +197,14 @@ public class GestaoProdutoBean implements Serializable {
 
     public void setLinguagens(List<String> linguagens) {
         this.linguagens = linguagens;
+    }
+
+    public String getNomeFrm() {
+        return nomeFrm;
+    }
+
+    public void setNomeFrm(String nomeFrm) {
+        this.nomeFrm = nomeFrm;
     }
 
 }
