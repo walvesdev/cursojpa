@@ -10,39 +10,43 @@
         <h:form>
 
             <style>
-                .teste{
+                .teste {
                     border: solid red 2px;
                 }
-
             </style>
             <div>
-                <h:graphicImage value="/img/v.jpg" height="150" width="300"/> <br />
-                <h:outputText value="outputtext"  /> <br />
-                <h:outputFormat value="Vaga {0}" > <br />
-                    <f:param value="#{gestaoProduto.vaga}"/>
-                </h:outputFormat> <br />
-                <h:outputLabel value="outputlabel" /> <br />
+                <h:graphicImage value="/img/v.jpg" height="150" width="300" />
+                <br />
+                <h:outputText value="outputtext" />
+                <br />
+                <h:outputFormat value="Vaga {0}">
+                    <br />
+                    <f:param value="#{gestaoProduto.vaga}" />
+                </h:outputFormat>
+                <br />
+                <h:outputLabel value="outputlabel" />
+                <br />
 
                 <h:commandLink value="Ajuda sobre essa Página"
                                action="#{gestaoProduto.obterAjuda}">
                     <f:actionListener binding="#{logListener}" />
                 </h:commandLink>
-                <br />
-                <br />
+                <br /> <br />
             </div>
             <h:panelGrid columns="2">
                 <h:outputLabel value="Nome: " for="nome" />
 
-                <h:inputText value="#{gestaoProduto.produto.nome}"  id="nome"
+                <h:inputText value="#{gestaoProduto.produto.nome}" id="nome"
                              onfocus="(this.value != '') ? true : this.value = ''">
                     <f:passThroughAttribute name="placeholder" value="seu texto" />
                 </h:inputText>
 
                 <h:outputLabel value="Fabricante " for="fabricante" />
-                <h:inputText value="#{gestaoProduto.produto.fabricante}" id="fabricante"/>
+                <h:inputText value="#{gestaoProduto.produto.fabricante}"
+                             id="fabricante" />
 
                 <h:outputLabel value="Preço:  " for="preco" />
-                <h:inputText  id="preco" />
+                <h:inputText id="preco" />
                 <h:outputLabel />
 
                 <h:commandButton value="Salvar" styleClass="btn btn-sm btn-primary"
@@ -53,10 +57,10 @@
 
 
                 <h:outputLabel value="Senha: " for="senha" />
-                <h:inputSecret id="senha"/>
+                <h:inputSecret id="senha" />
 
                 <h:outputLabel value="Comentario: " for="comentario" />
-                <h:inputTextarea id="comentario"/>
+                <h:inputTextarea id="comentario" />
 
             </h:panelGrid>
         </h:form>
@@ -71,9 +75,10 @@
         <h:form>
             <ol>
                 <ui:repeat var="item" value="#{gestaoProduto.produtos}">
-                    <li>#{item.nome} - #{item.fabricante} - #{item.preco}
-                        <h:commandButton value="Excluir" action="#{gestaoProduto.excluir}">
-                            <f:setPropertyActionListener target="#{gestaoProduto.produtoSelecionado}" value="#{item}" />
+                    <li>#{item.nome} - #{item.fabricante} - #{item.preco} <h:commandButton
+                            value="Excluir" action="#{gestaoProduto.excluir}">
+                            <f:setPropertyActionListener
+                                target="#{gestaoProduto.produtoSelecionado}" value="#{item}" />
                         </h:commandButton>
                     </li>
                 </ui:repeat>
@@ -82,73 +87,96 @@
 
         <h:form>
             <h:selectOneMenu id="time" value="#{gestaoProduto.time}">
-                <f:selectItem itemValue="São Paulo"/>
-                <f:selectItem itemValue="Corintian" itemLabel="Timão"/>
-                <f:selectItem itemValue="Flamengo" itemLabel="Mengão"/>
-                <f:selectItem itemValue="Palmeiras"/>
+                <f:selectItem itemValue="São Paulo" />
+                <f:selectItem itemValue="Corintian" itemLabel="Timão" />
+                <f:selectItem itemValue="Flamengo" itemLabel="Mengão" />
+                <f:selectItem itemValue="Palmeiras" />
             </h:selectOneMenu>
-            <h:commandButton value="Escolher" action="#{gestaoProduto.escolerTime}" />
+            <h:commandButton value="Escolher"
+                             action="#{gestaoProduto.escolerTime}" />
         </h:form>
 
         <h:form>
             <h:selectOneListbox id="time" value="#{gestaoProduto.time}" size="3">
-                <f:selectItem itemValue="São Paulo"/>
-                <f:selectItem itemValue="Corintian" itemLabel="Timão"/>
-                <f:selectItem itemValue="Flamengo" itemLabel="Mengão"/>
-                <f:selectItem itemValue="Palmeiras"/>
+                <f:selectItem itemValue="São Paulo" />
+                <f:selectItem itemValue="Corintian" itemLabel="Timão" />
+                <f:selectItem itemValue="Flamengo" itemLabel="Mengão" />
+                <f:selectItem itemValue="Palmeiras" />
             </h:selectOneListbox>
-            <h:commandButton value="Escolher" action="#{gestaoProduto.escolerTime}" />
-        </h:form> <br /> <br />
+            <h:commandButton value="Escolher"
+                             action="#{gestaoProduto.escolerTime}" />
+        </h:form>
+        <br />
+        <br />
 
         <h:form>
-            <h:selectManyMenu id="time" value="#{gestaoProduto.times}" style="height: 150px;">
-                <f:selectItem itemValue="São Paulo"/>
-                <f:selectItem itemValue="Corintian" itemLabel="Timão"/>
-                <f:selectItem itemValue="Flamengo" itemLabel="Mengão"/>
-                <f:selectItem itemValue="Palmeiras"/>
+            <h:selectManyMenu id="time" value="#{gestaoProduto.times}"
+                              style="height: 150px;">
+                <f:selectItem itemValue="São Paulo" />
+                <f:selectItem itemValue="Corintian" itemLabel="Timão" />
+                <f:selectItem itemValue="Flamengo" itemLabel="Mengão" />
+                <f:selectItem itemValue="Palmeiras" />
             </h:selectManyMenu>
-            <h:commandButton value="Escolher" action="#{gestaoProduto.escolerTime}" />
-        </h:form> <br /> <br />
+            <h:commandButton value="Escolher"
+                             action="#{gestaoProduto.escolerTime}" />
+        </h:form>
+        <br />
+        <br />
 
         <div>
             <ui:repeat var="item" value="#{gestaoProduto.times}">
-                <h:outputText value="#{item}" rendered="#{not empty gestaoProduto.times}"
-                              style="background-color: lightskyblue; color: black;"/><br/><br/>
+                <h:outputText value="#{item}"
+                              rendered="#{not empty gestaoProduto.times}"
+                              style="background-color: lightskyblue; color: black;" />
+                <br />
+                <br />
             </ui:repeat>
-        </div> <br /> <br />
+        </div>
+        <br />
+        <br />
         <div>
-            <h:outputText value="#{gestaoProduto.time}" rendered="#{not empty gestaoProduto.time}"
-                          style="background-color: lightskyblue; color: black;"/>
+            <h:outputText value="#{gestaoProduto.time}"
+                          rendered="#{not empty gestaoProduto.time}"
+                          style="background-color: lightskyblue; color: black;" />
         </div>
 
 
         <h:form>
-            <h:selectManyListbox id="time" value="#{gestaoProduto.times}" style="height: 150px;">
-                <f:selectItem itemValue="São Paulo"/>
-                <f:selectItem itemValue="Corintian" itemLabel="Timão"/>
-                <f:selectItem itemValue="Flamengo" itemLabel="Mengão"/>
-                <f:selectItem itemValue="Palmeiras"/>
+            <h:selectManyListbox id="time1" value="#{gestaoProduto.times}"
+                                 style="height: 150px;">
+                <f:selectItem itemValue="São Paulo" />
+                <f:selectItem itemValue="Corintian" itemLabel="Timão" />
+                <f:selectItem itemValue="Flamengo" itemLabel="Mengão" />
+                <f:selectItem itemValue="Palmeiras" />
             </h:selectManyListbox>
-            <h:commandButton value="Escolher" action="#{gestaoProduto.escolerTime}" />
-        </h:form> <br /> <br />
+            <h:commandButton value="Escolher"
+                             action="#{gestaoProduto.escolerTime}" />
+        </h:form>
+        <br />
+        <br />
 
         <div>
             <ui:repeat var="item" value="#{gestaoProduto.times}">
-                <h:outputText value="#{item}" rendered="#{not empty gestaoProduto.times}"
-                              style="background-color: lightskyblue; color: black;"/><br/><br/>
+                <h:outputText value="#{item}"
+                              rendered="#{not empty gestaoProduto.times}"
+                              style="background-color: lightskyblue; color: black;" />
+                <br />
+                <br />
             </ui:repeat>
-        </div> <br /> <br />
+        </div>
+        <br />
+        <br />
 
-        <h:form >
-            <h:outputLabel value="Sexo: " for="sexo"/>
-            <h:selectOneRadio value="#{gestaoProduto.sexo}" layout="pageDirection"
-                              id="sexo" onchange="this.form.submit()">
-                <f:selectItem  itemValue="M" itemLabel="Masculino" />
-                <f:selectItem  itemValue="F" itemLabel="Feminino" />
+        <h:form>
+            <h:outputLabel value="Sexo: " for="sexo" />
+            <h:selectOneRadio value="#{gestaoProduto.sexo}"
+                              layout="pageDirection" id="sexo" onchange="this.form.submit()">
+                <f:selectItem itemValue="M" itemLabel="Masculino" />
+                <f:selectItem itemValue="F" itemLabel="Feminino" />
             </h:selectOneRadio>
 
-            <h:outputLabel value="Gostaria de salvar as informaçõe?" for="salvar"/>
-            <h:selectBooleanCheckbox  value="#{gestaoProduto.salvar}" id="salvar"/>
+            <h:outputLabel value="Gostaria de salvar as informaçõe?" for="salvar" />
+            <h:selectBooleanCheckbox value="#{gestaoProduto.salvar}" id="salvar" />
 
             <h:selectManyCheckbox value="#{gestaoProduto.linguagens}">
                 <f:selectItem itemValue="JAVA" itemLabel="JAVA" />
@@ -158,10 +186,16 @@
             </h:selectManyCheckbox>
         </h:form>
 
-        <h:outputText value="#{gestaoProduto.sexo}" rendered="#{not empty gestaoProduto.sexo}"
-                      style="background-color: lightskyblue; color: black;"/><br/><br/>
-        <h:outputText value="#{gestaoProduto.salvar}" rendered="#{not empty gestaoProduto.sexo}"
-                      style="background-color: lightskyblue; color: black;"/><br/><br/>
+        <h:outputText value="#{gestaoProduto.sexo}"
+                      rendered="#{not empty gestaoProduto.sexo}"
+                      style="background-color: lightskyblue; color: black;" />
+        <br />
+        <br />
+        <h:outputText value="#{gestaoProduto.salvar}"
+                      rendered="#{not empty gestaoProduto.sexo}"
+                      style="background-color: lightskyblue; color: black;" />
+        <br />
+        <br />
 
         <ui:repeat var="item" value="#{gestaoProduto.linguagens}">
             #{item}
@@ -169,19 +203,40 @@
 
         <h:form>
             <h:commandButton value="Botão" action="Teste?faces-redirect=true" />
-            <br/>
+            <br />
 
             <h:commandLink value="CommandLink" action="Gestaoprodutos" />
-            <br/>
+            <br />
 
             <h:outputLink value="http://www.google.com">
                 Google
                 <f:param name="q" value="wastecnologia" />
             </h:outputLink>
-            <br/>
+            <br />
 
-            <h:link value="Enviar" outcome="Teste"/>
+            <h:link value="Enviar" outcome="Teste" />
 
+        </h:form>
+
+        <h:form id="frm">
+            <h:messages layout="table"
+                        errorStyle="color:red"
+                        infoStyle="color: green"
+                        warnStyle="color: orange"/>
+            <h:panelGrid columns="2">
+
+                <h:outputLabel value="Nome: " for="nomeFrm" />
+                <h:panelGroup>
+                    <h:inputText value="#{gestaoProduto.nomeFrm}" id="nomeFrm">
+                        <f:passThroughAttribute name="placeholder" value="Digite o nome: " />
+                    </h:inputText>
+                    <h:message for="nomeFrm" />
+                </h:panelGroup>
+
+                <h:outputLabel />
+                <h:commandButton value="Salvar" styleClass="btn btn-sm btn-primary"
+                                 action="#{gestaoProduto.cadastrarNomeFrm}" />
+            </h:panelGrid>
         </h:form>
 
     </ui:define>
